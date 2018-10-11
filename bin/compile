@@ -27,7 +27,7 @@ if [ -f $ENV_DIR/GHOSTSCRIPT_VERSION ]; then
   GHOSTSCRIPT_HOST="$(cat $ENV_DIR/GHOSTSCRIPT_HOST)"
 fi
 
-CACHE_FILE="$CACHE_DIR/imagemagick-$IMAGE_MAGICK_VERSION-with-gs-$GHOSTSCRIPT_VERSION.tar.gz"
+CACHE_FILE="$CACHE_DIR/imagemagick-$IMAGE_MAGICK_VERSION-with-gs-v1-$GHOSTSCRIPT_VERSION.tar.gz"
 
 if [ ! -f $CACHE_FILE ]; then
   # install imagemagick
@@ -80,7 +80,7 @@ if [ ! -f $CACHE_FILE ]; then
   cd $IMAGE_MAGICK_DIR
   export CPPFLAGS="-I$INSTALL_DIR/include"
   export LDFLAGS="-L$INSTALL_DIR/lib"
-  ./configure --with-zero-configuration --prefix=$INSTALL_DIR
+  ./configure --with-zero-configuration --without-gvc --prefix=$INSTALL_DIR
   make && make install
   cd ..
   rm -rf $IMAGE_MAGICK_DIR
